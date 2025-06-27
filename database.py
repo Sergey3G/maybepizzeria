@@ -1,15 +1,14 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import DeclarativeBase
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
+from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column, Integer, String
 
 
-SQLALCHEMY_DATABASE_URL = "sqlite:///./some_database.db"
-engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
+database_url = "sqlite:///./some_database.db"
+engine = create_async_engine(database_url, echo=True)
 
+AsyncSessionLocal = async_sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
 
-class Base(DeclarativeBase):
-    pass
+Base = declarative_base()
 
 
 class Person(Base):
@@ -18,6 +17,3 @@ class Person(Base):
     user_id: int = Column(Integer, primary_key=True, index=True)
     name: str = Column(String)
     age: int = Column(Integer)
-
-
-SessionLocal = sessionmaker(autoflush=False, bind=engine)
