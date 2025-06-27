@@ -3,7 +3,7 @@ from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column, Integer, String
 
 
-database_url = "sqlite:///./some_database.db"
+database_url = "sqlite+aiosqlite:///./some_database.db"
 engine = create_async_engine(database_url, echo=True)
 
 AsyncSessionLocal = async_sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
