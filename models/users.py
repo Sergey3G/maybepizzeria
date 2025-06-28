@@ -1,23 +1,20 @@
 from pydantic import BaseModel
-from custom_types.users import PersonAge, PersonName, PersonID
+from custom_types.users import UserAge, UserName, UserID, UserEmail
 
 
-class PersonBase(BaseModel):
-    name: PersonName
-    age: PersonAge
+class UserBase(BaseModel):
+    name: UserName
+    age: UserAge
+    email: UserEmail
 
 
-class PersonCreate(PersonBase):
+class UserCreate(UserBase):
     pass
 
 
-class PersonUpdate(PersonBase):
-    user_id: PersonID
+class UserUpdate(UserBase):
+    user_id: UserID
 
 
-class PersonDelete(PersonBase):
-    user_id: PersonID
-
-
-class PersonOut(PersonBase):
-    user_id: PersonID
+class UserDelete(UserBase):
+    user_id: UserID

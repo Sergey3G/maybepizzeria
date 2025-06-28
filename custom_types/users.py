@@ -1,7 +1,8 @@
 from typing import Annotated
-from pydantic import Field
+from pydantic import Field, EmailStr
 
 
-PersonName = Annotated[str, Field(..., min_length=1, max_length=20, description="person's name", example="Sergey")]
-PersonAge = Annotated[int, Field(..., ge=0, le=150, description="person's age", example=18)]
-PersonID = Annotated[int, Field(..., description="person's id", example=1)]
+UserName = Annotated[str, Field(..., min_length=1, max_length=20, description="user's name", example="Ivan")]
+UserAge = Annotated[int, Field(..., ge=0, le=150, description="user's age", example=18)]
+UserID = Annotated[int, Field(..., description="user's id", example=1)]
+UserEmail = Annotated[EmailStr, Field(..., description="user's email", example="ivan@example.com")]

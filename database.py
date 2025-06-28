@@ -2,8 +2,10 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sess
 from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column, Integer, String
 
+from custom_types.users import UserID, UserAge, UserName, UserEmail
 
-database_url = "sqlite+aiosqlite:///./some_database.db"
+
+database_url = "sqlite+aiosqlite:///./database.db"
 engine = create_async_engine(database_url, echo=True)
 
 AsyncSessionLocal = async_sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
@@ -11,9 +13,10 @@ AsyncSessionLocal = async_sessionmaker(bind=engine, class_=AsyncSession, expire_
 Base = declarative_base()
 
 
-class Person(Base):
-    __tablename__ = "people"
+class User(Base):
+    __tablename__ = "users"
 
-    user_id: int = Column(Integer, primary_key=True, index=True)
-    name: str = Column(String)
-    age: int = Column(Integer)
+    user_id: UserID = Column(Integer, primary_key=True, index=True)
+    name: UserName = Column(String)
+    age: UserAge = Column(Integer)
+    email: UserEmail = Column(String)
