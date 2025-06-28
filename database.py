@@ -6,7 +6,7 @@ from custom_types.users import (UserID, UserAge, UserName, UserEmail, UserCity, 
                                 UserHouseNumber)
 
 
-database_url = "sqlite+aiosqlite:///./database.db"
+database_url = "sqlite+aiosqlite:///./new_database.db"
 engine = create_async_engine(database_url, echo=True)
 
 AsyncSessionLocal = async_sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
