@@ -24,7 +24,9 @@ async def get_person(user_id, db: AsyncSession = Depends(get_db)):
 
 @router.post("/api/users")
 async def create_person(data: UserCreate, db: AsyncSession = Depends(get_db)):
-    person = User(name=data.name, age=data.age, email=data.email)
+    person = User(name=data.name, age=data.age, email=data.email,
+                  city=data.city, street=data.street, house_number=data.house_number,
+                  apartment=data.apartment)
     db.add(person)
     await db.commit()
     await db.refresh(person)

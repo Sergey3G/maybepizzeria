@@ -2,7 +2,8 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sess
 from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column, Integer, String
 
-from custom_types.users import UserID, UserAge, UserName, UserEmail
+from custom_types.users import (UserID, UserAge, UserName, UserEmail, UserCity, UserStreet, UserApartment,
+                                UserHouseNumber)
 
 
 database_url = "sqlite+aiosqlite:///./database.db"
@@ -20,3 +21,7 @@ class User(Base):
     name: UserName = Column(String)
     age: UserAge = Column(Integer)
     email: UserEmail = Column(String)
+    city: UserCity = Column(String)
+    street: UserStreet = Column(String)
+    house_number: UserHouseNumber = Column(Integer)
+    apartment: UserApartment = Column(Integer)
